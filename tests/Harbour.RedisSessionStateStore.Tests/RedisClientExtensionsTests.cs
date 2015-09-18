@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using ServiceStack;
 using Xunit;
-using ServiceStack.Redis;
-using ServiceStack.Text;
 
 namespace Harbour.RedisSessionStateStore.Tests
 {

@@ -105,7 +105,7 @@ namespace Harbour.RedisSessionStateStore.Tests
             provider.ResetItemTimeout(httpContext, "1234");
 
             var ttl = redis.GetTimeToLive(key);
-            Assert.Equal(20, ttl.TotalMinutes);
+            Assert.Equal(20, ttl.Value.TotalMinutes);
         }
 
         [Fact]
@@ -346,7 +346,7 @@ namespace Harbour.RedisSessionStateStore.Tests
             var data = provider.GetItem(null, "1234", out locked, out lockAge, out lockId, out actions);
             var ttl = redis.GetTimeToLive(key);
             Assert.Equal(80, data.Timeout);
-            Assert.Equal(80, ttl.TotalMinutes);
+            Assert.Equal(80, ttl.Value.TotalMinutes);
 
             Assert.False(locked);
             Assert.Equal(SessionStateActions.None, actions);
@@ -459,7 +459,7 @@ namespace Harbour.RedisSessionStateStore.Tests
             if (ttl != null || timeout.HasValue)
             {
                 var t = (ttl ?? (int)timeout) * 60;
-                Assert.True(Math.Abs(t - ttlActual.TotalSeconds) < 10);
+                Assert.True(Math.Abs(t - ttlActual.Value.TotalSeconds) < 10);
             }
 
             AssertCloseEnough(DateTime.UtcNow, data.Created);

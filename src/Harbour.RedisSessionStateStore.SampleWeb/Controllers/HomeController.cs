@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Harbour.RedisSessionStateStore.SampleWeb.Controllers
 {
@@ -17,16 +13,16 @@ namespace Harbour.RedisSessionStateStore.SampleWeb.Controllers
         [HttpPost]
         public ActionResult Index(string name, int age)
         {
-            this.Session["name"] = name;
-            this.Session["age"] = age;
-            return this.RedirectToAction("index");
+            Session["name"] = name;
+            Session["age"] = age;
+            return RedirectToAction("index");
         }
 
         [HttpPost]
         public ActionResult AbandonSession()
         {
-            this.Session.Abandon();
-            return this.RedirectToAction("index");
+            Session.Abandon();
+            return RedirectToAction("index");
         }
     }
 }
